@@ -6,3 +6,4 @@ output: html_document
 ---
 
 #Assignments and Projects
+* [Reading materials on molecular stuff](https://www.molecularecologist.com)
