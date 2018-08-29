@@ -2,7 +2,9 @@
 title: "Homepage"
 author: "Anoob Prakash"
 date: "29 August 2018"
-output: html_document
+output: 
+  html_document: 
+    theme: sandstone
 ---
 
 #Assignments and Projects
