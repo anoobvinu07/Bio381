@@ -1,11 +1,12 @@
 ---
 title: "Learning with Curiosity"
 author: "Anoob Prakash"
-date: "29 August 2018"
 output: 
   html_document: 
     theme: cosmo
 ---
+***
+### _I have not failed. I've just found 10,000 ways that won't work._ - Edison
 ***
 >#Assignments and Projects
 
