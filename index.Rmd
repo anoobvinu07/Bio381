@@ -8,7 +8,10 @@ output:
 ***
 #### _I have not failed. I've just found 10,000 ways that won't work._ - Edison
 ***
->#Assignments and Projects
-[Homework2](homework2.html)  
+>Assignments and Projects
+
+ .\ Homework1
+
+ .\ [Homework2](homework2.html)  
 
 ###[Reading materials on molecular stuff](https://www.molecularecologist.com)

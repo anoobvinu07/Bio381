@@ -1,0 +1,35 @@
+---
+title: "FirstMarkDown"
+author: "Anoob Prakash"
+date: "6 September 2018"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=TRUE, results='asis'}
+library(knitr)
+kable(head(iris))
+
+```
+
+##Fractions and Greek symbols
+
+$$ \alpha = \frac{\beta}{\delta + \gamma_{x=3}} $$
+
+##Summation sign
+
+$$z=\sum_{i=1}^{J-1}{K_i}$$
+
+##Escaping backslash character
+
+$$\backslash \alpha \ge b \backslash$$
+
+##Mixing plain text in LaTeX
+
+$$P(\mbox{Occurrence Of Species A}) = Z$$
+
