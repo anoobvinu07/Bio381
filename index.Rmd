@@ -10,8 +10,12 @@ output:
 ***
 >Assignments and Projects
 
- .\ Homework1
+ .\ Homework1  
+ Learning about GitHub and setting up website for uploading lab assignments.
 
  .\ [Homework2](homework2.html)  
+ Working with different diagrams to illustrate and draw out an outline for potential research areas.
+ 
+  .\ Homework3
 
 ###[Reading materials on molecular stuff](https://www.molecularecologist.com)
