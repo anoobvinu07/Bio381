@@ -4,9 +4,9 @@ author: "Anoob Prakash"
 date: "12 September 2018"
 output: 
   beamer_presentation: 
-    colortheme: dolphin
-    fonttheme: professionalfonts
-    theme: Madrid
+    colortheme: orchid
+    fonttheme: serif
+    theme: Marburg
 ---
 
 ##What is DNA ?
@@ -31,47 +31,35 @@ output:
 
 \bigskip
 
-- \color{pink} Nitrogen bases
+- \color{red} Nitrogen bases
 
 \pagebreak
 
 
 
-## Using bigskip
+##Double helical strucuture of DNA
 
-For...
-
-\bigskip   
-\bigskip   
-\bigskip   
-\bigskip   
-\bigskip   
-
-Emphasis
-
-##Double helical strucuture of DNA ()
-
- \begin{picture}(300,230)
- \put(50,50){\includegraphics[height=5cm]{dna.jpg}}
+ \begin{picture}(320,250)
+ \put(50,80){\includegraphics[height=5cm]{dna2.jpg}}
  \put(00,50){\begin{minipage}[t]{1\linewidth}
  \end{minipage}}
  \end{picture}
  
-## Trial Figure In \LaTeX (2)
+## Watson and Crick
 
  \begin{picture}(320,250)
- \put(00,100){\includegraphics[height=5cm]{dna.jpg}}
+ \put(50,80){\includegraphics[height=5cm]{watsonandcrick.jpg}}
  \put(00,60){\begin{minipage}[t]{1\linewidth}
- {Choose a point on the unit circle. Connect it to the origin with a line of length one, and denote the angle between that line and the horizontal coordinate axis by $\theta$.}
+ {James Dewey Watson and Francis Harry Compton Crick observed the double helical strucutre of DNA and published their discovery in April, 1953}
  \end{minipage}}
  \end{picture}
  
-## Trial Figure In \LaTeX (3)
+## Impact of this discovery
 
  \begin{picture}(320,250)
- \put(0,20){\includegraphics[height=8cm]{dna.jpg}}
- \put(180,180){\begin{minipage}[t]{0.4\linewidth}
- {Choose a point on the unit circle. Connect it to the origin with a line of length one, and denote the angle between that line and the horizontal coordinate axis by $\theta$.}
+ \put(0,20){\includegraphics[height=6cm]{science.jpg}}
+ \put(20,35){\begin{minipage}[t]{1\linewidth}
+ \large\color{white}{Science was never the same again after this discovery}
  \end{minipage}}
  \end{picture}
  

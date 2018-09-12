@@ -16,6 +16,8 @@ output:
  .\ [Homework2](homework2.html)  
  Working with different diagrams to illustrate and draw out an outline for potential research areas.
  
-  .\ Homework3
+  .\ [Homework3](NotesBeamer.pdf)  
+Learning to use beamer and creating ones own presentation using beamer and R markdown.  
+
 
 ###[Reading materials on molecular stuff](https://www.molecularecologist.com)
