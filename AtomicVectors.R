@@ -45,7 +45,7 @@ plantHeight <-3 #camelCase naming
 z <- c(1.1,2,3,4)
 typeof(z)
 is.character(z)
-is.interger(z)
+is.integer(z)
 
 
 # 2) length of the atomic vector
@@ -143,3 +143,74 @@ z <- vector(mode="numeric", length=0)
 print(z)
 z <- c(z, 5)
 print(z)
+
+# better to pre-allocate vector space
+z <- rep(0,100)
+str(z)
+head(z)
+tail(z)
+
+# start with NAs
+z <- rep(NA,100)
+head(z)
+typeof(z)
+
+z[2] <- "Adams"
+head(z)
+typeof(z)
+
+# efficiently add names to an atomic vector
+
+myVector <- runif(100)
+head(myVector)
+myNames <- paste("Species", seq(1:length(myVector)),sep="")
+head(myNames)
+tail(myNames)
+names(myVector)
+names(myVector) <- myNames
+head(myVector)
+
+# use rep function to repeat elements and vector
+
+rep(0.5,6)
+rep(x = 0.5, times = 6)
+rep(times = 6, x = 0.5)
+myVec <- c(2,4,1)
+rep(x = myVec, times = 2)
+rep(x = myVec, each = 2) #each and times gives seperate results
+rep(x = myVec, times = myVec)
+rep(x = myVec, each = myVec)
+
+
+# use seq() to create regular sequences
+seq(from = 2, to = 4)
+2:4
+seq(from = 2, to = 4, by = 0.5)
+seq(from = 2, to = 4, length = 7)
+1:length(myVec)
+seq_along(myVec)
+seq_len(5)
+
+# quickly creating random numbers
+runif(5) # 5 [0,1] unifrom
+runif(n = 3,min = 100, max = 100)
+
+rnorm(6) #mean0, sd1
+rnorm(n = 3, mean = 100, sd = 10)
+
+# sample from an atomic vector
+
+longVec <- LETTERS[1:10]
+print(longVec)
+sample(longVec) #reordering
+vecTreat <- c(rep("Control", 5),rep("Treatment",5))
+vecTreat
+sample(vecTreat)
+sample(x = longVec, size = 3)
+sample(x = longVec, size = 16) # throws an error if more than whats at hand is asked for
+sample(x = longVec, size = 16, replace = TRUE)
+MyWeights <- c(rep(20,5),rep(100,5))
+MyWeights
+sample(x = longVec, replace = TRUE, prob = MyWeights)
+sample(x = longVec, replace = FALSE, prob = MyWeights)
+

@@ -10,14 +10,17 @@ output:
 ***
 >Assignments and Projects
 
- .\ Homework1  
- Learning about GitHub and setting up website for uploading lab assignments.
+ .\ Homework 1  
+ Learning about GitHub and setting up website for uploading lab assignments. 
 
- .\ [Homework2](homework2.html)  
+ .\ [Homework 2](homework2.html)  
  Working with different diagrams to illustrate and draw out an outline for potential research areas.
  
-  .\ [Homework3](NotesBeamer.pdf)  
+  .\ [Homework 3](NotesBeamer.pdf)  
 Learning to use beamer and creating ones own presentation using beamer and R markdown.  
+
+  .\ [Homework 4](Homework4RegularExpressions.html)
+Doing some basic coding assignments and learning  to use regular expressions in a text editor.
 
 ...................................................................
 
