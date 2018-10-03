@@ -61,7 +61,7 @@ iris5 <- summarize(iris4,
                    meanLength = mean(Sepal.Length), 
                    meanWidth = mean(Sepal.Width), 
                    meanArea = mean(Sepal.Area), 
-                   N = n()) 
+                   SampleSize = n()) 
 print(iris5)
 ```
 ***
@@ -70,7 +70,7 @@ Q. Finally, create iris6 that calculates the average sepal length, the average s
 iris6 <- summarise(iris4, meanLength = mean(Sepal.Length), 
                    meanWidth = mean(Sepal.Width), 
                    meanArea = mean(Sepal.Area), 
-                   N = n())
+                   SampleSize = n())
 print(iris6)
 ```
 ***
