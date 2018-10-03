@@ -1,0 +1,53 @@
+---
+title: "Data Distributions"
+author: "Anoob Prakash"
+date: "3 October 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+***
+
+####Long and wide data formats
+Try converting the iris data set into the long format, with a column called “trait” to indicate sepal and petal length and width.
+
+Once you have converted to the long format, calculate the average for each combination of species and trait.
+
+```{r}
+library(tidyverse)
+longDat <- iris %>%
+  gather(Sepal.Length:Petal.Width, key = "trait", value = "value") %>%
+  arrange(Species)
+
+head(longDat)
+
+SpsTrait <- longDat %>%
+  group_by(Species,trait) %>%
+  summarize(meanValues = mean(value)) %>%
+  arrange(Species,trait)
+print(SpsTrait)
+```
+***
+####Simulating and Fitting Data Distributions
+This exercise teaches you how to compare a histogram of continuous (or integer) data to the probability density functions for different statistical distributions.
+
+Set up a new .Rmd file for this exercise. Copy and paste the code below into different code chunks, and then read the text and run the code chunks one at a time to see what they do. You probably won’t understand everything in the code, but this is a good start for seeing some realistic uses of ggplot. We will cover most of these details in the next few weeks.
+
+Once the code is in and runs, try reading in your own .csv file into a data frame with this code chunk:
+
+```{r}
+z <- read.table("MyDataFile.csv",header=TRUE,sep=",", stringsAsFactors=FALSE)
+str(z)
+summary(z)
+print(z)
+```
+```
+z <- rnorm(n=3000,mean=0.2)
+z <- data.frame(1:3000,z)
+names(z) <- list("ID","myVar")
+z <- z[z$myVar>0,]
+str(z)
+summary(z$myVar)
+head(z)
