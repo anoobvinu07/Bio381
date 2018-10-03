@@ -22,5 +22,8 @@ Learning to use beamer and creating ones own presentation using beamer and R mar
   .\ [Homework 4](Homework4RegularExpressions.html)  
 Doing some basic coding assignments and learning  to use regular expressions in a text editor.
 
+  .\ [Homework 5](Homework5dplyr.html)  
+Learning to code in dplyr and how to use piping for efficient coding.
+
 ***
 #####[Reading materials on molecular stuff](https://www.molecularecologist.com)
