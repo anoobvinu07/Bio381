@@ -5,10 +5,6 @@ date: "3 October 2018"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-***
 
 ####Long and wide data formats
 Try converting the iris data set into the long format, with a column called “trait” to indicate sepal and petal length and width.
@@ -38,16 +34,30 @@ Set up a new .Rmd file for this exercise. Copy and paste the code below into dif
 Once the code is in and runs, try reading in your own .csv file into a data frame with this code chunk:
 
 ```{r}
-z <- read.table("MyDataFile.csv",header=TRUE,sep=",", stringsAsFactors=FALSE)
+z <- read.table("MyDataFile.csv",header=TRUE,sep=",", stringsAsFactors=FALSE) # myVar is the RWC for the species studied
 str(z)
 summary(z)
 print(z)
 ```
+
+```{r}
+library(ggplot2) # for graphics
+library(MASS) # for maximum likelihood estimation
 ```
-z <- rnorm(n=3000,mean=0.2)
-z <- data.frame(1:3000,z)
-names(z) <- list("ID","myVar")
-z <- z[z$myVar>0,]
-str(z)
-summary(z$myVar)
-head(z)
+
+***
+####Plot histogram of data
+Plot a histogram of the data, using a modification of the code from lecture. Here we are switching from qplot to ggplot for more graphics options. We are also rescaling the y axis of the histogram from counts to density, so that the area under the histogram equals 1.0.
+```{r}
+p1 <- ggplot(data=z, aes(x=myVar, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk",size=0.2) 
+print(p1)
+```
+####Add empirical density curve
+Now modify the code to add in a kernel density plot of the data. This is an empirical curve that is fitted to the data. It does not assume any particular probability distribution, but it smooths out the shape of the histogram:
+```{r}
+p1 <-  p1 +  geom_density(linetype="dotted",size=0.75)
+print(p1)
+
+```
+

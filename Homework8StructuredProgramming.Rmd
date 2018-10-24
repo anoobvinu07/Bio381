@@ -1,0 +1,78 @@
+---
+title: "Exploring data with Structured Programming"
+author: "Anoob Prakash"
+date: "17 October 2018"
+output: html_document
+---
+Global variables
+```
+n <- 100
+sd <- 0.10
+mean <- 
+
+```
+
+```{r}
+########################
+# FUNCTION:Simulate fake data
+# INPUTS: Treatments and Responses
+# Treatment = Temperature and Response = WUE
+# OUTPUTS:data.frame
+#-----------------------
+fData <- function(mean1=15,mean2=0.45,n1=100,n2=100,sd1=0.10,sd2=0.10){
+  df <- data.frame(Treatment=rnorm(mean=mean1,n=n1,sd=sd1),
+                     Response=rnorm(mean=mean2,n=n2,sd=sd2))
+  return(df)
+}
+
+#-----------------------
+```
+
+```{r}
+########################
+# FUNCTION:Regression analysis
+# INPUTS:
+# OUTPUTS:
+#-----------------------
+rPlot <- function(mean1=15,mean2=0.45,n1=100,n2=100,sd1=0.10,sd2=0.10){
+  df <- data.frame(Treatment=rnorm(mean=mean1,n=n1,sd=sd1),
+                     Response=rnorm(mean=mean2,n=n2,sd=sd2))
+  expPlot <- ggplot(data = df,
+                    aes(x=Treatment, y=Response)) + 
+                    geom_point() +
+                    stat_smooth(method=lm, se = 0.99)
+return(print(expPlot))
+}
+rPlot()
+#-----------------------
+```
+
+```{r}
+########################
+# FUNCTION:
+# INPUTS:
+# OUTPUTS:
+#-----------------------
+
+
+
+
+
+
+
+#-----------------------
+```
+
+########################
+# FUNCTION:
+# INPUTS:
+# OUTPUTS:
+#-----------------------
+
+
+
+
+
+
+return()
+#-----------------------
