@@ -25,5 +25,8 @@ Doing some basic coding assignments and learning  to use regular expressions in 
   .\ [Homework 5](Homework5dplyr.html)  
 Learning to code in dplyr and how to use piping for efficient coding.
 
+  .\ [Homework 6](Homework6DataDistribution.html)  
+Simulating and fitting data distributions
+  
 ***
 #####[Reading materials on molecular stuff](https://www.molecularecologist.com)

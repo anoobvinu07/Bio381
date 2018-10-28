@@ -1,0 +1,55 @@
+---
+title: "Looping structures"
+author: "Anoob Prakash"
+date: "24 October 2018"
+output: html_document
+---
+
+Q. Using a <i>for</i> or <i>while</i> loop, write a function to calculate the number of zeroes in a numeric vector.
+
+```{r}
+vec1 <- c(0,5,1,2,4,5,6,8,9,0,7,6,4,3,0)
+
+for (i in vec1) {
+  x <- length(which(i == 0))
+  print(sum(x))
+}
+
+```
+
+Q. Use subsetting instead of a loop to rewrite the function as a single line of code.
+
+```{r}
+vec1 <- c(0,5,1,2,4,5,6,8,9,0,7,6,4,3,0)
+x <- vec1[length(which(vec1==0))]
+print(sum(x))
+```
+
+Q. Write a function that takes as input a numeric vector, and returns as output the maximum difference between all possible pairs of elements. Be careful to ensure that your function works properly with both negative and positive numbers. For your first version of the function, create a vector that stores all possible pairwise differences and then extracts the maximum value from that list.
+
+```{r}
+vec1 <- c(0,5,1,2,4,5,6,8,9,0,7,6,4,3,0)
+diff <- function(x = vec1) {
+  z <- sort(vec1, decreasing = FALSE)
+  for(i in z){
+  y <- z - z[1]
+  
+  
+  }
+  print(max(y))
+  
+}
+
+diff()
+
+vec1 <- c(0,5,1,2,4,5,6,8,9,0,7,6,4,3,0)
+
+  z <- sort(vec1, decreasing = FALSE)
+  z[1] - z
+```
+
+Q. Now modify the output of (3) to yield a list with 3 elements. The first list item is the pair of vector values that are the maximum distance apart, the second list item is the pair of numbers representing the position of these elements in the vector, and the third list item is the maximum distance calculated from this pair.
+
+```{r}
+
+```

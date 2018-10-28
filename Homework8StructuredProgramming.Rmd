@@ -5,10 +5,10 @@ date: "17 October 2018"
 output: html_document
 ---
 Global variables
-```
+```{r}
 n <- 100
 sd <- 0.10
-mean <- 
+
 
 ```
 
@@ -49,7 +49,7 @@ rPlot()
 
 ```{r}
 ########################
-# FUNCTION:
+# FUNCTION:ANOVA
 # INPUTS:
 # OUTPUTS:
 #-----------------------
@@ -64,7 +64,7 @@ rPlot()
 ```
 
 ########################
-# FUNCTION:
+# FUNCTION:Summarize
 # INPUTS:
 # OUTPUTS:
 #-----------------------
