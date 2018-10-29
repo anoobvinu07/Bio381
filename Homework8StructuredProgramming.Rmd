@@ -4,17 +4,18 @@ author: "Anoob Prakash"
 date: "17 October 2018"
 output: html_document
 ---
-Global variables
-```{r}
-n <- 100
-sd <- 0.10
 
+```{r}
+library(ggplot2)
 
 ```
 
+***
+### Function for simulating data
+
 ```{r}
 ########################
-# FUNCTION:Simulate fake data
+# FUNCTION:fData (Simulate fake data)
 # INPUTS: Treatments and Responses
 # Treatment = Temperature and Response = WUE
 # OUTPUTS:data.frame
@@ -28,51 +29,108 @@ fData <- function(mean1=15,mean2=0.45,n1=100,n2=100,sd1=0.10,sd2=0.10){
 #-----------------------
 ```
 
+***
+### Function for regression analysis
+
 ```{r}
+# assign the output from the function to a variable
+DF <- fData()
 ########################
-# FUNCTION:Regression analysis
-# INPUTS:
-# OUTPUTS:
+# FUNCTION:rPlot (Regression analysis)
+# INPUTS:variables for regression analysis from fData()
+# OUTPUTS:regression plot
 #-----------------------
-rPlot <- function(mean1=15,mean2=0.45,n1=100,n2=100,sd1=0.10,sd2=0.10){
-  df <- data.frame(Treatment=rnorm(mean=mean1,n=n1,sd=sd1),
-                     Response=rnorm(mean=mean2,n=n2,sd=sd2))
-  expPlot <- ggplot(data = df,
+rPlot <- function(data=DF){
+    expPlot <- ggplot(data = DF,
                     aes(x=Treatment, y=Response)) + 
                     geom_point() +
                     stat_smooth(method=lm, se = 0.99)
 return(print(expPlot))
 }
-rPlot()
+
 #-----------------------
 ```
+
+***
+### Function for categorising treatment into two subgroups
+
+```{r}
+##################################
+# FUNCTION: divDat (dividing the temperature into hot snd cold)
+# INPUTS: data for treatment from DF
+# OUTPUTS: additional column specifying whether the treatment(temperature) is HOT or COLD 
+#-------------------------
+
+divDat <- function(data = DF) {
+ rownum <- 0
+ meanTemp <- mean(DF[,1])
+ for (x in 1:length(DF[,1])) {
+   rownum <- 1 + rownum
+   if (DF[rownum,1] >= meanTemp) {
+     DF[rownum,3] <- "HOT"
+   }else{
+    DF[rownum,3] <- "COLD"
+   }
+ }
+ return(DF)
+}
+#-------------------------
+```
+
+***
+### Function for ANOVA
+
+```{r}
+# assign the the new DF to DF2
+DF2 <- divDat()
+########################
+# FUNCTION:ANV (ANOVA)
+# INPUTS:variables for doing ANOVA from DF
+# OUTPUTS:ANOVA summary output
+#-----------------------
+ANV <- function(data = DF2){
+  ANOmodel <- aov(Treatment~Response, data=DF2)
+
+
+return(summary(ANOmodel))
+}
+
+#-----------------------
+```
+
+***
+### Function for creating boxplots
 
 ```{r}
 ########################
-# FUNCTION:ANOVA
-# INPUTS:
-# OUTPUTS:
+# FUNCTION:ANVplot (boxplots from ANOVA)
+# INPUTS:categorical and control variable
+# OUTPUTS:boxplots
 #-----------------------
+ANVplot <- function(DF2) {
+ANOplot <- ggplot(data=DF2,
+                 aes(x=V3,y=Response,
+                     fill=V3)) +
+    geom_boxplot() +
+  labs(x = "Temperature", y = "WUE")
+ 
+print(ANOplot)
+}
 
-
-
-
-
-
-
+ANVplot(DF2)
 #-----------------------
 ```
 
-########################
-# FUNCTION:Summarize
-# INPUTS:
-# OUTPUTS:
-#-----------------------
+***
+## Calls for the functions
 
+fData()  
 
+rPlot()
 
+divDat()
 
+ANV()
 
+ANVplot(DF2)
 
-return()
-#-----------------------
