@@ -6,7 +6,7 @@ library(tcltk2)
 library(ggplot2)
 
 
-#######################################################
+###########################FUNCTION : RanWalk##########
 # FUNCTION : RanWalk
 # stochastic random walk
 # input : times = number of time steps
@@ -36,6 +36,7 @@ RanWalk <- function(times = 100,
   } # end of for loop
   return(n)
 } # end of RanWalk
+myWalk <- RanWalk................
 
 qplot(x=1:100, y=RanWalk(), geom = "line")
 qplot(x=1:100, y=RanWalk(noiseSD = 0), geom = "line")
@@ -117,4 +118,15 @@ for (i in seq_along(cPars)) {
   for (j in seq_along(zPars)) {
     SpeciesAreaPlot(c=cPars[i], z=zPars[j])
   }
+}
+
+# expand grid for setting up a data frame with different parameter combinations
+cPars
+zPars
+expand.grid(cPars, zPars)
+
+###############################################
+# function: SA_Output
+SA_Output <- function(S=runif(10)){
+  sumStats <- list(SGain=max(S))
 }

@@ -32,7 +32,10 @@ Simulating and fitting data distributions.
 Creating Fake Data Sets To Explore Hypotheses.
 
   .\ [Homework 8](Homework8StructuredProgramming.html)   
-Creating functions and working with structured programming  
+Creating functions and working with structured programming.  
+
+  .\ [Homework 9-10](Homework10Looping.html)   
+Performing `for` loops and randomisation of data.  
 
 ***
 #####[Reading materials on molecular stuff](https://www.molecularecologist.com)

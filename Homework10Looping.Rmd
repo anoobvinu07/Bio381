@@ -1,0 +1,202 @@
+---
+title: "Looping structures and Randomisation tests"
+author: "Anoob Prakash"
+date: "24 October 2018"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+Q.Using a `for` loop, write a function to calculate the number of zeroes in a numeric vector. Before entering the loop, set up a counter variable `counter <- 0`. Inside the loop, add 1 to counter each time you have a zero in the matrix. Finally, use `return(counter)` for the output.
+
+```{r}
+vec1 <- c(0,5,1,2,4,5,6,8,9,0,7,6,4,3,0)
+counter <- 0
+
+for (i in seq_along(vec1)) {
+  
+  if(vec1[i] == 0) 
+  {counter <- counter + 1
+  }
+
+}
+print(counter)
+```
+
+***
+
+Q. Use subsetting instead of a loop to rewrite the function as a single line of code.
+
+```{r}
+y <- sum(vec1 == 0)
+print(y)
+```
+
+***
+
+Q. Write a function that takes as input two integers representing the number of rows and columns in a matrix. The output is a matrix of these dimensions in which each element is the product of the row number x the column number.
+
+```{r}
+xVar <- 12
+yVar <- 9
+
+##############################################################
+# FUNCTION:Crreate Matrix (dMat)
+# INPUTS:integer values for matrix dimensions
+# OUTPUTS:matrix
+#-------------------------------------------------------------
+dMat <- function(x = round(xVar), y = round(yVar)){
+  m <- matrix(nrow = x, ncol = y, byrow = TRUE)
+  for (i in 1:nrow(m)) {
+    for (j in 1:ncol(m)) {
+      m[i,j] <- i*j
+      
+    }
+    
+  }
+  return(print(m))
+}
+  
+#-------------------------------------------------------------
+dMat()  
+```
+Q. Use the code from yesterday’s class to design and conduct a randomization test for some of your own data. You will need to modify the functions that read in the data, calculate the metric, and randomize the data. Once those are set up, the program should run correctly calling your new functions. Also, to make your analysis fully repeatable, make sure you set the random number seed at the beginning (use either set.seed() in base R, or char2seed in the TeachingDemos package
+
+```{r}
+library(ggplot2)
+library(TeachingDemos)
+char2seed("Autumn Leaves")
+################Read in data##################################
+# FUNCTION:readData (Simulate data)
+# INPUTS: Treatments and Responses
+############### xObs = Temperature and yObs = WUE#############
+# OUTPUTS:data.frame
+#-----------------------
+
+
+readData <- function(mean1=15,mean2=0.45,n1=100,n2=100,sd1=0.10,sd2=0.10) {
+                  xObs <- rnorm(mean=mean1,n=n1,sd=sd1)
+                  yObs <- rnorm(mean=mean2,n=n2,sd=sd2)
+                  dF <- data.frame(ID=seq_along(xObs),xObs,yObs)
+                   # set up data frame                 
+
+######print(qplot(x=xObs,y=yObs)) # peek at input data
+
+  return(dF)
+}
+
+
+#####################Calculate Metric#############################
+# function: getMetric
+# calculate metric for randomization test
+# input: 2-column data frame for regression
+# output: regression slope
+#------------------------------------------------- 
+df<-readData()
+
+# linear regression between temperature and WUE
+getMetric <- function(z=df) {
+                  
+. <- lm(z[,3]~z[,2])
+. <- summary(.)
+. <- .$coefficients[2,1]
+
+slope <- .
+
+return(slope)
+}
+
+#------------------------------------------------------------------
+
+
+
+####################Create randomization##############################
+# function: shuffleData
+# randomize data for regression analysis
+# input: 3-column data frame (ID,xVar,yVar)
+# output: 3-column data frame (ID,xVar,yVar)
+#------------------------------------------------- 
+df<-readData()
+
+
+shuffleData <- function(z=df) {
+                z[,3] <- sample(z[,3]) # use sample function with defaults to reshuffle column
+
+return(z)
+}
+#---------------------------------------------------------------------
+
+
+#################Calculate p value from simulated metrics####################
+# function: getPVal
+# calculate p value from simulation
+# input: list of observed metric, and vector of simulated metrics
+# output: lower, upper tail probability values
+#------------------------------------------------- 
+
+
+
+getPVal <- function(z=df) {
+                      pLower <- mean(z[[2]]<=z[[1]])
+                      pUpper <- mean(z[[2]]>=z[[1]])
+return(c(pL=pLower,pU=pUpper))
+                    }
+
+getPVal()
+
+
+############Create histogram of simulated and observed metric################
+# function: plotRanTest
+# create ggplot of histogram of simulated values
+# input: list of observed metric and vector of simulated metrics
+# output: saved ggplot graph
+#------------------------------------------------- 
+plotRanTest <- function(z=df) {
+dF <- data.frame(ID=seq_along(z[[2]]),simX=z[[2]])
+p1 <- ggplot(data=dF,mapping=aes(x=simX))
+p1 + geom_histogram(mapping=aes(fill=I("goldenrod"),color=I("black"))) +
+geom_vline(aes(xintercept=z[[1]],col="blue")) 
+
+                  }
+#----------------------------------------------------------------------------
+
+# Performing the randomisation test
+nSim <- 1000
+Xsim <- rep(NA,nSim) # vector of simulated slopes
+dF <- readData()
+Xobs <- getMetric(dF)
+
+for (i in seq_len(nSim)) {
+Xsim[i] <- getMetric(shuffleData(dF))
+}
+
+slopes <- list(Xobs,Xsim)
+getPVal(slopes)
+
+plotRanTest(slopes)
+
+
+```
+
+***
+
+Q. For comparison, calculate in R the standard statistical analysis you would use with these data. How does the p-value compare for the standard test versus the p value you estimated from your randomization test? If the p values seem very different, run the program again with a different starting seed (and/or increase the number of replications in your randomization test). If there are persistent differences in the p value of the standard test versus your randomization, what do you think is responsible for this difference?
+
+```{r}
+# data used for hypothesis testing
+n <- 1000 
+WUE <- rnorm(n, mean=0.45,sd=0.20)
+temp <- rnorm(n, mean=15,sd=0.10) 
+ID <- seq_len(n)
+expData <- data.frame(ID,temp,WUE)
+expModel <- lm(WUE~temp, data = expData)
+print(expModel)
+
+
+lReg <- summary(expModel) 
+pVal <- lReg$coefficients[2,4]  
+pVal
+    
+# The p-value thus generated was not significant enough to denote a that a change in temperature affects the water use efficiency, which was the initial hypothesis for the experiment. The randomisation tests also gives a similar result, confirming the validity of the hypothesis.
+
+```

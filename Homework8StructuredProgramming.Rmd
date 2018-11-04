@@ -3,6 +3,8 @@ title: "Exploring data with Structured Programming"
 author: "Anoob Prakash"
 date: "17 October 2018"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r}
