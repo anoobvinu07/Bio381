@@ -8,7 +8,7 @@ editor_options:
 ---
 
 ***
-#### installing patchwork
+#### installing required packages
 
 ```{r}
 install.packages("devtools") # required for installing packages from github
@@ -16,6 +16,8 @@ devtools::install_github("thomasp85/patchwork")
 
 library(patchwork)
 library(ggplot2)
+library(colorspace)
+library(cowplot)
 
 install.packages("colorspace", repos = "http://R-Forge.R-project.org")
 devtools::install_github("wilkelab/cowplot")
@@ -23,4 +25,13 @@ devtools::install_github("wilkelab/cowplot")
 devtools::install_github("clauswilke/colorblindr")
 ```
 ***
+```{r}
+
+
+
+
+
+```
+
+
 
