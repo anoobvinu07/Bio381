@@ -1,0 +1,26 @@
+---
+title: "Advanced ggploting"
+author: "Anoob Prakash"
+date: "7 November 2018"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+***
+#### installing patchwork
+
+```{r}
+install.packages("devtools") # required for installing packages from github
+devtools::install_github("thomasp85/patchwork")
+
+library(patchwork)
+library(ggplot2)
+
+install.packages("colorspace", repos = "http://R-Forge.R-project.org")
+devtools::install_github("wilkelab/cowplot")
+
+devtools::install_github("clauswilke/colorblindr")
+```
+***
+
