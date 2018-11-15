@@ -26,10 +26,12 @@ devtools::install_github("clauswilke/colorblindr")
 ```
 ***
 ```{r}
+d <- iris 
 
-
-
-
+head(d)
+d1 <- ggplot(d, mapping = aes(fill = Sepal.Width)) + geom_bar()
+print(d1)
+d1
 
 ```
 
