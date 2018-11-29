@@ -37,5 +37,8 @@ Creating functions and working with structured programming.
 \ [Homework 9-10](Homework10Looping.html)   
 Performing `for` loops and randomisation of data.  
 
+\ [Leaflet for R](leafletR.html)   
+Creating interactive maps easily within R. 
+
 ***
 #####[Reading materials on molecular stuff](https://www.molecularecologist.com)
