@@ -10,34 +10,34 @@ output:
 ***
 >Assignments and Projects
 
-\ Homework 1  
+* Homework 1  
  Learning about GitHub and setting up website for uploading lab assignments. 
 
-\ [Homework 2](homework2.html)  
+* [Homework 2](homework2.html)  
 Working with different diagrams to illustrate and draw out an outline for potential research areas.
  
-\ [Homework 3](NotesBeamer.pdf)  
+* [Homework 3](NotesBeamer.pdf)  
 Learning to use beamer and creating ones own presentation using beamer and R markdown.  
 
-\ [Homework 4](Homework4RegularExpressions.html)  
+* [Homework 4](Homework4RegularExpressions.html)  
 Doing some basic coding assignments and learning  to use regular expressions in a text editor.
 
-\ [Homework 5](Homework5dplyr.html)  
+* [Homework 5](Homework5dplyr.html)  
 Learning to code in dplyr and how to use piping for efficient coding.
 
-\ [Homework 6](Homework6DataDistribution.html)  
+* [Homework 6](Homework6DataDistribution.html)  
 Simulating and fitting data distributions.
 
-\ [Homework 7](Homework7CFakedata.html)  
+* [Homework 7](Homework7CFakedata.html)  
 Creating Fake Data Sets To Explore Hypotheses.
 
-\ [Homework 8](Homework8StructuredProgramming.html)   
+* [Homework 8](Homework8StructuredProgramming.html)   
 Creating functions and working with structured programming.  
 
-\ [Homework 9-10](Homework10Looping.html)   
+* [Homework 9-10](Homework10Looping.html)   
 Performing `for` loops and randomisation of data.  
 
-\ [Leaflet for R](leafletR.html)   
+* [Leaflet for R](leafletR.html)   
 Creating interactive maps easily within R. 
 
 ***

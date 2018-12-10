@@ -10,10 +10,13 @@ editor_options:
 ---
 
 ## Why leaflet?
-It's one of the openly used openscript libraries for making interactive maps and used by many to publish maps. This R package helps bring the same functionality to R, and makes it easy to integrate and control Leaflet maps in R.
-Create maps right from the R console or RStudio
-Embed maps in R Markdown documents and Shiny apps
-Easily render spatial objects from the sp or sf packages, or data frames with latitude/longitude columns
+It's one of the openly used openscript libraries for making interactive maps and used by many to publish maps. This R package helps bring the same functionality to R, and makes it easy to integrate and control Leaflet maps in R. 
+
+* Create maps right from the R console or RStudio 
+
+* Embed maps in R Markdown documents and Shiny apps 
+
+* Easily render spatial objects from the sp or sf packages, or data frames with latitude/longitude columns
 
 #### Packages to Install
 To install this R package, run this command at your R prompt:
@@ -84,14 +87,14 @@ b.  From `sp` packages
 
 c. From the `maps package`
 
-From Base R
+Example 1. From Base R
 
 ```{r}
 df = data.frame(Lat = 1:10, Long = rnorm(10))
 leaflet(df) %>% addTiles() %>% addCircles()
 ```
 
-From the `maps package`
+Example 2. From the `maps package`
 ```{r}
 require("maps")
 library(maps)
@@ -119,6 +122,7 @@ The list of third party map providers can also be obtained by running the below 
 head(names(providers))
 ```
 
+#### Some examples of the maps available in leaflet are shown below:
 ##### Open TopoMap:
 
 ```{r, echo=FALSE}
@@ -139,7 +143,7 @@ m %>% addProviderTiles(providers$Esri.NatGeoWorldMap)
 
 
 ####B) Stacking base maps
-With the adjustent in opacity, different base maps can be stacked on top of each other.
+With the adjustent in opacity, different base maps can be stacked on top of each other. This helps in augmenting the deatails in a given map. You might need to work a bit all the map types to get a sense of which all combinations works best. The example below uses the NatGeoWorldMap from ESRI and overlay it with the contrasting map lines and names of Stamen Toner.
 
 ```{r}
 
@@ -155,6 +159,7 @@ m %>% addProviderTiles(providers$Esri.NatGeoWorldMap) %>%
 ####Shape and Polygons
 
 Circles:
+The circle size is not based on pixel, so even when you zoom in or zoom out, it does not vary in shape. An example of this is given below.
 
 ```{r}
 cities <- read.csv(textConnection("
@@ -175,6 +180,7 @@ leaflet(cities) %>% addTiles() %>%
 ```
 
 Rectangles:
+Similar concepts apply here, but instead of using a data set to set the size, you need to define the four corners of the rectangle with lat and long values.
 
 ```{r}
 leaflet() %>% addTiles() %>%
@@ -186,6 +192,8 @@ leaflet() %>% addTiles() %>%
 ```
 
 ###Markers
+It's always useful to mark your datapoints on a map to observe the spatial distribution of the dataset.
+
 ```{r}
 data(quakes) #Locations of Earthquakes off Fiji
 
@@ -196,7 +204,7 @@ leaflet(data = quakes[1:20,]) %>% addTiles() %>%
   addMarkers(~long, ~lat, popup = ~as.character(mag), label = ~as.character(mag))
 ```
 
-When there are a large number of markers on the map, you can cluster them together using the argument `clusterOptions`.
+Note that the marker size is defined based on pixels, and will keep the shape irrespectiev of the zoom level. However, it might become cumbersome to observe this with a large number of dataset. When there are a large number of markers on the map, you can cluster them together using the argument `clusterOptions`.
 
 ```{r}
 leaflet(quakes) %>% addTiles() %>% addMarkers(
@@ -207,7 +215,7 @@ leaflet(quakes) %>% addTiles() %>% addMarkers(
 
 ###Add ons
 
-Various utility functions can be used to augment your map with additional elements. One such example is given below:
+Various utility functions can be used to augment your map with additional elements. One basic example is given below is to add a distance measuring tool and a minimap.
 
 ```{r}
 leaflet(quakes) %>% addTiles() %>% addMarkers(
@@ -215,8 +223,11 @@ leaflet(quakes) %>% addTiles() %>% addMarkers(
 ) %>% addMeasure() %>% addMiniMap()
 ```
 
+These are the basics of using the `leaflet` package and just barely skimmed the surface of what this package is capable of doing. For more details, check the leaflet documention site listed below. The R markdown for this tutorial is also given below. Hope you had fun following through this tutorial.
 
 ***
-source: https://rstudio.github.io/leaflet/
+The R markdown for this tutorial: [Leaflet tutorial](leafletR.Rmd)
+
+documentation source: https://rstudio.github.io/leaflet/
 
 Full extent of leaflet application: https://leafletjs.com/examples.html
