@@ -51,4 +51,3 @@ Github profile: [anoobvinu07](https://github.com/anoobvinu07)
 prettydoc : [Create pretty documents from R markdown](http://yixuan.cos.name/prettydoc/themes.html)
 
 
-#####
