@@ -8,31 +8,128 @@ editor_options:
 ---
 
 ***
-#### installing required packages
+#### Installing required packages
 
 ```{r}
-install.packages("devtools") # required for installing packages from github
-devtools::install_github("thomasp85/patchwork")
+#install.packages("devtools") # required for installing packages from github
+#devtools::install_github("thomasp85/patchwork")
+# install.packages("colorspace", repos = "http://R-Forge.R-project.org")
+# devtools::install_github("wilkelab/cowplot")
+# 
+# devtools::install_github("clauswilke/colorblindr")
+```
 
+#### Required set of packages for this section:
+
+* library(patchwork)
+* library(ggplot2)
+* library(colorspace)
+* library(cowplot)
+* library(tidyverse)
+* library(ggpubr)
+
+***
+
+```{r include=FALSE}
 library(patchwork)
 library(ggplot2)
 library(colorspace)
 library(cowplot)
-
-install.packages("colorspace", repos = "http://R-Forge.R-project.org")
-devtools::install_github("wilkelab/cowplot")
-
-devtools::install_github("clauswilke/colorblindr")
+library(tidyverse)
+library(ggpubr)
 ```
+
 ***
+
 ```{r}
-d <- iris 
 
-head(d)
-d1 <- ggplot(d, mapping = aes(fill = Sepal.Width)) + geom_bar()
-print(d1)
-d1
+a <- read.csv("pollution_data1.csv") # dataset on the effect of pollution on photosynthesis and transpiration in some tropical trees
+head(a)
+a1 <- ggplot(a, mapping = aes(x=treatment, y = photosynthesis, fill = season)) +
+  xlab("Treatment") + ylab("Photosynthesis") +
+  geom_boxplot()
 
+a1 # Checking how much particulate pollution affects photosynthesis
+
+a2 <- ggplot(a, mapping = aes(x=treatment, y = transpiration, fill = season)) + 
+  xlab("Treatment") + ylab("Transpiration") +
+  geom_boxplot()
+a2 # Checking how much particulate pollution affects transpiration
+
+a1 + a2
+```
+
+Particulate pollution is negatively affecting both photosynthesis and transpiration in the tropical trees. However, transpiration during monsoon seems to be augmented by in the presence of pollution. In order to check the distribution of the data set to check for any abonormalities, use `geom_point()`
+```{r}
+a2 <- ggplot(a, mapping = aes(x=treatment, y = transpiration, fill = season)) + 
+  xlab("Treatment") + ylab("Transpiration") +
+  geom_boxplot() + geom_point()
+a2
+```
+
+Checking the dataset reveals that there is only one outlier in the data for monsoon. However, the dataset per se is too widespread to draw any conclusions. The next logical step would be to look at individual trees and check for their response to pollution.
+
+```{r}
+a3 <- ggplot(a, mapping = aes(x=Species, y=transpiration)) + 
+  geom_boxplot() +
+  facet_grid(season~Species) 
+a3
+```
+
+Here, after facet wrap, the x-axis is jumbled and almost unrealdable. In order to rectify that, we set the `scale = "free"` within the facet wrap.
+
+```{r}
+
+a3 <- ggplot(a, mapping = aes(x=Species, y=transpiration)) + 
+  geom_boxplot() +
+  facet_grid(season~Species, scales = "free") + 
+  ylab("Transpiration") 
+  
+a3
+```
+
+Since the species names are repeated above and below the graph, one of them can be removed for better viewability using the `theme()` function. This function is also used for renaming the facet labels as required by the user.
+
+```{r}
+a3 <- ggplot(a, mapping = aes(x=Species, y=transpiration)) + 
+  geom_boxplot() +
+  facet_grid(season~Species) + 
+  ylab("Transpiration") +
+  theme(axis.text.x = element_blank())
+a3
+```
+
+From observing the individual tree's performance, it is clear that the variance observed during monsoon is more or less for all the trees. This is intersting observation, which require further investigations to draw meaningful conclusions.
+
+***
+
+### Other random stuffs done with ggplot2 graphing tools
+
+```{r}
+(a1 + a2)/a3 # arranging multiple graphs together
+
+
+
+a4 <- ggplot(a, mapping = aes(x = Species, y = photosynthesis, fill = season)) + geom_boxplot()
+a4 + facet_grid(.~season, scales = "free")
+
+a5 <- ggplot(a, mapping = aes(x = treatment, y = photosynthesis, fill = Species)) + geom_boxplot()
+a5.1 <- a5 + facet_grid(Species~season)
+
+a6 <- ggplot(a, mapping = aes(x = treatment, y = transpiration, fill = Species)) + geom_boxplot()
+a6.1 <- a6 + facet_grid(Species~season)
+
+a5 + a6
+
+a5.1 + a6.1
+```
+
+###Unifying the legends
+The legends are printed seperately for the faceted graphs in the above plots, eventhough both the graph legends are the same.This problem can be solved by using the package `ggpubr`. This package is available within CRAN.
+
+
+```{r}
+ggarrange(a5.1, a6.1, ncol = 2, common.legend = TRUE, legend = "right")
 ```
 
 

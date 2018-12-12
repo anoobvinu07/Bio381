@@ -37,8 +37,18 @@ Creating functions and working with structured programming.
 * [Homework 9-10](Homework10Looping.html)   
 Performing `for` loops and randomisation of data.  
 
+* [Homework 11](Homework11ggplot.html)   
+Understanding the various options available for plotting when using `ggplot2`. 
+
 * [Leaflet for R](leafletR.html)   
 Creating interactive maps easily within R. 
 
 ***
-#####[Reading materials on molecular stuff](https://www.molecularecologist.com)
+#####Course instructors: [Nicholas J. Gotelli](https://gotellilab.github.io/Bio381/) & [Lauren Ash](https://lvash.github.io/Bio381_2018/#id-section1)
+
+Github profile: [anoobvinu07](https://github.com/anoobvinu07)   
+
+prettydoc : [Create pretty documents from R markdown](http://yixuan.cos.name/prettydoc/themes.html)
+
+
+#####
